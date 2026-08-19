@@ -299,7 +299,7 @@ impl ThreadLocalActor for GossipManager {
             }
             ToGossipManager::ReceivedMessage { bytes, topic, .. } => {
                 if let Some((_, from_gossip_tx)) = state.sessions.gossip_senders.get(&topic) {
-                    let _number_of_subscribers = from_gossip_tx.send(bytes)?;
+                    let _ = from_gossip_tx.send(bytes);
                 }
             }
             ToGossipManager::Joined {
